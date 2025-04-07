@@ -1,0 +1,325 @@
+/* General Styling */
+body {
+    margin: 0; /* Removes the default margin around the body */
+    padding: 0; /* Removes the default padding around the body */
+    font-family: 'Poppins', sans-serif; /* Sets the font family to Poppins */
+    background: linear-gradient(90deg, #020024 0%, #1b3c87 40%, #00b4db 100%); /* Sets a gradient background from dark blue to light blue */
+    line-height: 1.6; /* Increases the line height for better readability */
+}
+
+a {
+    text-decoration: none; /* Removes underline from links */
+    color: white; /* Sets the text color of links to white */
+    transition: color 0.3s ease; /* Smooth transition for color change on hover */
+}
+
+/* Container Layout */
+.test-page, .tests-page {
+    display: flex; /* Uses flexbox layout */
+    align-items: center; /* Vertically centers items */
+    justify-content: center; /* Horizontally centers items */
+    min-height: 100vh; /* Ensures the page takes at least 100% of the viewport height */
+}
+
+.container, .test-container {
+        background: white;
+        text-align: center;
+        padding: 2rem;
+        border-radius: 16px;
+        transition: 0.5s;
+        width: 1400px;
+        transition: 0.5s;
+        margin-top: 20px;
+        margin-bottom: 20px;
+}
+.test-container{
+    width: 1000px;;
+}
+.container:hover, .test-container:hover {
+    transform:scale(1.02) ;
+    box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
+      0 0 100px #008cff;
+}
+
+/* Headings */
+h1 {
+    margin: 0 0 1rem; /* Removes top margin and adds bottom margin */
+    color: #333; /* Sets the color of the main heading to dark gray */
+}
+
+h2 {
+    margin: 0 0 1rem; /* Removes top margin and adds bottom margin */
+    color: white; /* Sets the color of the subheading to white */
+}
+
+/* Instructions */
+.instructions {
+    font-size: 1.1rem; /* Sets the font size of instructions */
+    margin: 1rem 0; /* Adds margin above and below */
+    color: #555; /* Sets the text color to a medium gray */
+}
+
+/* Buttons */
+button {
+    padding: 0.8rem 1.5rem; /* Adds padding to buttons */
+    font-size: 1rem; /* Sets the font size of buttons */
+    border: none; /* Removes border from buttons */
+    border-radius: 8px; /* Rounds the corners of buttons */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+    background: #4caf50; /* Sets the background color of the button to green */
+    color: #0a0a0a; /* Sets the text color to dark gray */
+    transition: background 0.3s ease; /* Smooth transition for background color change */
+    margin: 0.5rem; /* Adds margin around the button */
+}
+
+button:hover {
+    background: #82e84b; /* Changes background color on hover to a lighter green */
+}
+
+/* Back Button */
+.back-button {
+    display: inline-block; /* Makes the back button inline */
+    margin-top: 1.5rem; /* Adds margin at the top */
+    font-weight: bold; /* Makes the text bold */
+    padding: 0.5rem 1rem; /* Adds padding inside the button */
+    border-radius: 8px; /* Rounds the corners of the button */
+    background: linear-gradient(90deg, #020024 0%, #1b3c87 40%, #00b4db 100%); /* Sets background color to light gray */
+    color: white; /* Sets the text color to dark gray */
+    transition: 0.3s ease; /* Smooth transition for background color change */
+}
+
+.back-button:hover { 
+    transform:scale(1.05) ;
+    text-decoration: none; /* Removes underline from text on hover */
+}
+
+/* Test Cards */
+.test-grid {
+    display: flex; /* Uses flexbox layout for the grid */
+    flex-wrap: wrap; /* Allows wrapping of flex items */
+    gap: 1.5rem; /* Adds spacing between items */
+    margin-top: 2rem; /* Adds margin above the grid */
+    justify-content: center; /* Centers the items horizontally */
+}
+
+.test-card {
+    flex: 1 1 300px; /* Flex grow, shrink, and basis to ensure responsive cards */
+    padding: 2rem; /* Adds padding inside each test card */
+    border-radius: 12px; /* Rounds the corners of the test cards */
+    background: linear-gradient(90deg, #020024 0%, #1b3c87 40%, #00b4db 100%); /* Sets a gradient background for the test cards */
+    box-shadow: 0 8px 20px rgba(9, 9, 9, 0.2); /* Adds shadow to the cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scaling and shadow on hover */
+    color: white; /* Sets text color inside the card to white */
+    text-decoration: none; /* Removes underline from the card links */
+}
+
+.test-card:hover {
+    transform: translateY(-8px); /* Moves the card up slightly on hover */
+    box-shadow: 0 12px 30px rgba(10, 10, 10, 0.4); /* Increases the shadow effect on hover */
+}
+
+.test-card h2 {
+    margin-top: 0; /* Removes the top margin from the heading */
+    font-size: 1.5rem; /* Sets the font size for the heading inside the card */
+}
+
+/* Results Page */
+#results {
+    margin: 2rem 0; /* Adds margin to the top and bottom of the results section */
+}
+
+#results p {
+    font-size: 1.2rem; /* Sets the font size for result paragraphs */
+    margin-bottom: 1rem; /* Adds margin below the paragraph */
+}
+
+#advice {
+    list-style-type: none; /* Removes default list styling */
+    padding: 0; /* Removes padding */
+    margin: 2rem 0; /* Adds margin to the top and bottom */
+}
+
+#advice li {
+    padding: 0.8rem; /* Adds padding to each list item */
+    margin-bottom: 0.8rem; /* Adds margin below each list item */
+    background: #f8f8f8; /* Sets a light gray background for the list items */
+    border-radius: 8px; /* Rounds the corners of the list items */
+    font-size: 1.1rem; /* Sets the font size of the list items */
+}
+
+/* Ishihara Test Specific */
+.ishihara-container {
+    margin: 2rem 0; /* Adds margin to the top and bottom */
+}
+
+/* Amsler Grid Specific */
+.amsler-grid-container {
+    margin: 2rem 0; /* Adds margin to the top and bottom */
+}
+
+/* Audiometry Test Specific */
+.test-controls {
+    margin: 1rem 0; /* Adds margin to the top and bottom */
+}
+
+/* Tinnitus Test Specific */
+.sliders {
+    margin: 1.5rem 0; /* Adds margin to the top and bottom */
+}
+
+/* Visual Acuity Test Specific */
+.eye-chart {
+    margin: 2rem 0; /* Adds margin to the top and bottom */
+    max-width: 100%; /* Ensures the image doesn't exceed the container's width */
+}
+
+.eye-chart img {
+    width: 100%; /* Ensures the image takes the full width of its container */
+    height: auto; /* Maintains the image's aspect ratio */
+}
+
+/* Response Box */
+.response-box {
+    margin: 1.5rem 0; /* Adds margin to the top and bottom */
+    padding: 1rem; /* Adds padding inside the response box */
+    background: #f8f8f8; /* Sets a light gray background */
+    border-radius: 8px; /* Rounds the corners of the box */
+    text-align: left; /* Aligns text to the left inside the box */
+}
+
+.response-box label {
+    display: block; /* Makes the label a block element */
+    margin-bottom: 0.5rem; /* Adds margin below the label */
+    font-weight: bold; /* Makes the label text bold */
+}
+
+.response-box input {
+    width: 100%; /* Makes the input take up the full width of its parent */
+    padding: 0.5rem; /* Adds padding inside the input */
+    margin-bottom: 0.5rem; /* Adds margin below the input */
+    border: 1px solid #ddd; /* Sets a light border around the input */
+    border-radius: 4px; /* Rounds the corners of the input */
+}
+
+#submit-response {
+    background: #4caf50; /* Sets a green background for the submit button */
+    color: white; /* Sets text color to white */
+    border: none; /* Removes border from the button */
+    padding: 0.5rem 1rem; /* Adds padding inside the button */
+    border-radius: 4px; /* Rounds the corners of the button */
+    cursor: pointer; /* Changes the cursor to a pointer */
+}
+
+#submit-response:hover {
+    background: #45a049; /* Changes background to a darker green on hover */
+}
+
+#result {
+    margin-top: 1rem; /* Adds margin at the top of the result box */
+    padding: 1rem; /* Adds padding inside the result box */
+    background: #f8f8f8; /* Sets a light gray background */
+    border-radius: 8px; /* Rounds the corners of the result box */
+}
+
+.print-button {
+    background: linear-gradient(90deg, #020024 0%, #1b3c87 40%, #00b4db 100%); /* Match gradient background */
+    padding: 1rem 2rem; /* Same padding as 'Retake Test' button */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1.25rem; /* Same font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    color: white; /* White text color */
+    margin-top: 1rem; /* Same margin as 'Retake Test' button */
+}
+
+.print-button:hover {
+    transform: scale(1.05); /* Slight scaling effect on hover */
+    box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff, 0 0 100px #008cff; /* Match hover effect */
+}
+img{
+    width: 350px;
+}
+
+/* White Card */
+.white-card {
+    background: white; /* White background for the card */
+    border-radius: 16px; /* Rounded corners */
+    padding: 1rem; /* Reduce padding inside the card */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 500px; /* Reduce the width of the card */
+    margin: 1rem auto; /* Reduce margin around the card */
+    text-align: center; /* Center-align text inside the card */
+}
+
+.white-card h1 {
+    color: #333; /* Dark gray color for headings */
+    margin-bottom: 1rem; /* Reduce space below the heading */
+    font-size: 1.5rem; /* Reduce font size for headings */
+}
+
+.white-card label {
+    display: block; /* Make labels block elements */
+    margin-bottom: 0.3rem; /* Reduce space below the label */
+    font-weight: bold; /* Bold text for labels */
+    color: #555; /* Medium gray color for labels */
+    font-size: 0.9rem; /* Reduce font size for labels */
+}
+
+.white-card input, .white-card select {
+    width: 100%; /* Full width inputs and selects */
+    padding: 0.5rem; /* Reduce padding inside inputs and selects */
+    margin-bottom: 0.8rem; /* Reduce space below inputs and selects */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 0.9rem; /* Reduce font size for inputs and selects */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+.white-card button {
+    background: #4caf50; /* Green background for buttons */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    padding: 0.5rem 1rem; /* Reduce padding inside buttons */
+    border-radius: 8px; /* Rounded corners for buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 0.9rem; /* Reduce font size for buttons */
+    transition: background 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.white-card button:hover {
+    background: #45a049; /* Darker green on hover */
+}
+
+.white-card p {
+    color: #555; /* Medium gray color for text */
+    margin-top: 0.8rem; /* Reduce space above the paragraph */
+    font-size: 0.9rem; /* Reduce font size for paragraphs */
+}
+
+.white-card a {
+    color: #4caf50; /* Green color for links */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: bold; /* Bold text for links */
+    font-size: 0.9rem; /* Reduce font size for links */
+}
+
+.white-card a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.print-button {
+    background: linear-gradient(90deg, #020024 0%, #1b3c87 40%, #00b4db 100%);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: white;
+    margin-top: 1rem;
+    margin-left: 1rem; /* Add spacing between buttons */
+}
+
+.print-button:hover {
+    transform: scale(1.05); /* Slight scaling effect on hover */
+    box-shadow: 0 0 10px rgba(0, 180, 219, 0.5); /* Add glow effect */
+}
