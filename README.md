@@ -44,7 +44,7 @@ npm install
 
 Mabel Preeju A | [GitHub](https://github.com/Mabel2026)
 
-Mahima Ann Abraham | GitHub
+Mahima Ann Abraham | [GitHub](https://github.com/Mhm-arcd7)
 
 Geevar Saji Kuriakose | [GitHub](https://github.com/Geevar12)
 
