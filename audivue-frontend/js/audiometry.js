@@ -1,20 +1,26 @@
-// Add Firebase authentication and database references at the top of your file
-const auth = firebase.auth(); // Reference to Firebase authentication
-const database = firebase.database(); // Reference to Firebase Realtime Database
+// Import Firestore references at the top of your file
+const auth = firebase.auth();
+const firestore = firebase.firestore();
 
 // Modify the redirectToResults function
 function redirectToResults() {
     // Encode the results data into a URL-safe format for passing to the next page
     let resultData = encodeURIComponent(JSON.stringify(results));
     
-    // Save the audiometry results to Firebase Realtime Database
-    database.ref('audiometry-results').push({
+    // Save the audiometry results to Firestore
+    firestore.collection('Users').doc(auth.currentUser.uid)
+      .collection('Audiometry Test').add({
         results: results, // The results array containing frequency/volume data
         timestamp: Date.now() // The timestamp when the results were recorded
+    })
+    .then(() => {
+        console.log('Audiometry results saved'); // Log success if results are saved
+        // Redirect to the 'audiometry-results.html' page, passing the result data in the URL
+        window.location.href = `audiometry-results.html?data=${resultData}`;
+    })
+    .catch((error) => {
+        console.error('Error saving Audiometry results:', error); // Log error if saving results fails
     });
-    
-    // Redirect to the 'audiometry-results.html' page, passing the result data in the URL
-    window.location.href = `audiometry-results.html?data=${resultData}`;
 }
 
 // Wait for the DOM to fully load before adding event listeners and setting up the test
@@ -120,29 +126,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to redirect to results page with encoded data
     function redirectToResults() {
-        let resultData = encodeURIComponent(JSON.stringify(results)); // Encode results data as a URL parameter
-        window.location.href = `audiometry-results.html?data=${resultData}`; // Redirect to results page with data
-    }
-});
-
-// In audiometry.js: Function to save audiometry results to Firebase
-function saveAudiometryResults(resultsData) {
-    const user = auth.currentUser; // Get the current logged-in user
-    if (!user) {
-      console.error('User must be logged in to save results'); // Show an error if user is not logged in
-      return;
-    }
+        // Calculate the average hearing threshold
+        let avgVolume = results
+          .filter(r => typeof r.volume === 'number')
+          .reduce((sum, r) => sum + r.volume, 0) / results.length;
     
-    // Save the results data to Firebase under the user's UID in 'testResults/audiometry' path
-    database.ref(`testResults/${user.uid}/audiometry`).push(resultsData)
-      .then(() => {
-        console.log('Audiometry results saved'); // Log success if results are saved
-      })
-      .catch((error) => {
-        console.error('Error saving Audiometry results:', error); // Log error if saving results fails
-      });
-}
-
+        // Save test results to Firestore
+        saveAudiometryResults({
+          results: results,
+          averageVolume: avgVolume,
+          timestamp: Date.now()
+        });
+    
+        // Redirect to results page
+        let resultData = encodeURIComponent(JSON.stringify(results));
+        window.location.href = `audiometry-results.html?data=${resultData}`;
+      }
+});
 // Example call to save the audiometry results after the test is complete
 saveAudiometryResults({
     results: results, // Store the frequency/volume results

@@ -16,7 +16,6 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyBFZS00IGb-Huhv6jRmfVfc0MrE86WsQgY", // API key for Firebase authentication
   authDomain: "audivue-c9f43.firebaseapp.com", // Authentication domain for Firebase
-  databaseURL: "https://audivue-c9f43-default-rtdb.asia-southeast1.firebasedatabase.app", // URL for Firebase Realtime Database (not used in this code)
   projectId: "audivue-c9f43", // Project ID for Firebase
   storageBucket: "audivue-c9f43.firebasestorage.app", // Storage bucket for Firebase Storage
   messagingSenderId: "342383567867", // Sender ID for Firebase Cloud Messaging
@@ -73,4 +72,5 @@ export function signIn(email, password) {
             console.error('Sign-in error:', errorCode, errorMessage); // Log sign-in error
             alert('Error: ' + errorMessage);  // Display error message to the user
         });
+}
 }

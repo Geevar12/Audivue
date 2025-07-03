@@ -40,25 +40,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Function to store the test results in Firestore
 function storeTestResults(results) {
-    const userEmail = localStorage.getItem('userEmail'); // Get the user's email from localStorage
-
-    if (userEmail) {
-        const userRef = firestore.collection('Users').doc(userEmail);
-
-        // Store the test result under a subcollection 'Amsler Grid Test'
-        const testRef = userRef.collection('Amsler Grid Test').doc();
-
-        const testData = {
-            response: results.response,
-            assessment: results.assessment,
-            recommendations: results.recommendations,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        };
-
-        testRef.set(testData)
+    const user = auth.currentUser;
+    if (user) {
+        firestore.collection('Users').doc(user.uid)
+            .collection('Amsler Grid Test').add({
+                response: results.response,
+                assessment: results.assessment,
+                recommendations: results.recommendations,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
             .then(() => {
                 console.log("Test results successfully stored in Firestore.");
             })
+            .catch((error) => {
+                console.error("Error storing test results:", error);
+            });
+    } else {
+        console.error("User not authenticated.");
+    }
+}
             .catch((error) => {
                 console.error("Error storing test results:", error);
             });

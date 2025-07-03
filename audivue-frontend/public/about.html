@@ -154,17 +154,16 @@
         </div>
     </footer>
 
-    <!-- Firebase SDKs for Authentication and Database -->
+    <!-- Firebase SDKs for Authentication and Firestore -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
     
     <script>
       // Firebase Configuration (your web app's Firebase setup)
       const firebaseConfig = {
         apiKey: "AIzaSyBFZS00IGb-Huhv6jRmfVfc0MrE86WsQgY",
         authDomain: "audivue-c9f43.firebaseapp.com",
-        databaseURL: "https://audivue-c9f43-default-rtdb.asia-southeast1.firebasedatabase.app",
         projectId: "audivue-c9f43",
         storageBucket: "audivue-c9f43.firebasestorage.app",
         messagingSenderId: "342383567867",
@@ -174,7 +173,7 @@
       // Initialize Firebase
       const app = firebase.initializeApp(firebaseConfig);
       const auth = firebase.auth();
-      const database = firebase.database();
+      const firestore = firebase.firestore();
 
       // Redirect to login page when 'Get Started' button is clicked
       document.getElementById("getStartedButton").addEventListener("click", function() {
@@ -182,4 +181,5 @@
       });
     </script>
 </body>
+</html>
 </html>

@@ -1,13 +1,13 @@
-// Add Firebase authentication and database references at the top of your file
-const auth = firebase.auth(); // Reference to Firebase authentication
-const database = firebase.database(); // Reference to Firebase Realtime Database
+// Add Firebase authentication and Firestore references at the top of your file
+const auth = firebase.auth();
+const firestore = firebase.firestore();
 
 // Modify the event listener for the "yes-button"
 document.getElementById("yes-button").addEventListener("click", function() {
     // ... existing code ...
     
-    // Save the response and results to Firebase database under 'amsler-grid-results'
-    database.ref('amsler-grid-results').push({
+    // Save the response and results to Firestore under 'amsler-grid-results'
+    firestore.collection('amsler-grid-results').add({
         response: "Yes, I see distortion", // Response data when the user sees distortion
         assessment: resultsData.assessment, // Assessment data from the test
         recommendations: resultsData.recommendations, // Recommendations based on the test
@@ -21,8 +21,8 @@ document.getElementById("yes-button").addEventListener("click", function() {
 document.getElementById("no-button").addEventListener("click", function() {
     // ... existing code ...
     
-    // Save the response and results to Firebase database under 'amsler-grid-results'
-    database.ref('amsler-grid-results').push({
+    // Save the response and results to Firestore under 'amsler-grid-results'
+    firestore.collection('amsler-grid-results').add({
         response: "No, I don't see distortion", // Response data when the user doesn't see distortion
         assessment: resultsData.assessment, // Assessment data from the test
         recommendations: resultsData.recommendations, // Recommendations based on the test
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// In amsler-grid.js - Function to save test results to Firebase
+// In amsler-grid.js - Function to save test results to Firestore
 function saveTestResults(testData) {
     const user = auth.currentUser; // Get the currently authenticated user
     if (!user) {
@@ -60,8 +60,9 @@ function saveTestResults(testData) {
       return;
     }
     
-    // Save the test data to Firebase under the user's specific UID and 'amslerGrid' path
-    database.ref(`testResults/${user.uid}/amslerGrid`).push(testData)
+    // Save the test data to Firestore under the user's specific UID and 'amslerGrid' path
+    firestore.collection('Users').doc(user.uid)
+      .collection('Amsler Grid Test').add(testData)
       .then(() => {
         // If successful, log success in the console
         console.log('Amsler Grid results saved');
@@ -89,20 +90,21 @@ document.getElementById("yes-button").addEventListener("click", function() {
         "We recommend consulting with an eye care professional for further evaluation."
       ]
     };
-  
-    // Save test results to Firebase
+
+    // Save test results to Firestore
     saveTestResults({
       testName: 'Amsler Grid Test',
       score: 1, // Indicates a positive result
-      details: resultsData
+      details: resultsData,
+      timestamp: Date.now()
     });
-  
+
     // Redirect to results page
     const resultData = encodeURIComponent(JSON.stringify(resultsData));
     window.location.href = `amsler-grid-results.html?data=${resultData}`;
-  });
+});
   
-  document.getElementById("no-button").addEventListener("click", function() {
+document.getElementById("no-button").addEventListener("click", function() {
     const resultsData = {
       response: "No, I don't see distortion",
       assessment: "Your central vision appears normal based on this preliminary test.",
@@ -111,15 +113,16 @@ document.getElementById("yes-button").addEventListener("click", function() {
         "Remember that this is not a substitute for a comprehensive eye examination."
       ]
     };
-  
-    // Save test results to Firebase
+
+    // Save test results to Firestore
     saveTestResults({
       testName: 'Amsler Grid Test',
       score: 0, // Indicates a negative result
-      details: resultsData
+      details: resultsData,
+      timestamp: Date.now()
     });
-  
+
     // Redirect to results page
     const resultData = encodeURIComponent(JSON.stringify(resultsData));
     window.location.href = `amsler-grid-results.html?data=${resultData}`;
-  });
+});
