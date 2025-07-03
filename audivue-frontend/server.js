@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
 // 🔑 Gemini API key — use environment variable for security
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -47,11 +47,11 @@ If the prompt is explicit, inappropriate, or unrelated to healthcare, politely r
 
 // 🏠 Home route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, 'public/about.html'));
 });
 
 // Serve index.html for all other routes (SPA support)
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
