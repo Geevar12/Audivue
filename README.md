@@ -40,9 +40,10 @@ cd audivue
 npm install
 ```
 
-##Login Credentials
+## Login Credentials
 username : jack231@gmail.com
-password: jack231
+
+password : jack231
 
 ## About the devs
 
