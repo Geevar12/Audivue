@@ -40,6 +40,10 @@ cd audivue
 npm install
 ```
 
+##Login Credentials
+username : jack231@gmail.com
+password: jack231
+
 ## About the devs
 
 Mabel Preeju A | [GitHub](https://github.com/Mabel2026)
