@@ -9,6 +9,12 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+
+// 🏠 Home route (must be before static middleware)
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/about.html"));
+});
+
 app.use(express.static(path.join(__dirname, "public")));
 
 // 🔑 Gemini API key — use environment variable for security
@@ -45,11 +51,6 @@ If the prompt is explicit, inappropriate, or unrelated to healthcare, politely r
             reply: "Dr. Strange: My connection to the Multiverse failed. Try again later!",
         });
     }
-});
-
-// 🏠 Home route
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public/about.html"));
 });
 
 // Serve index.html for all other routes (SPA support)
